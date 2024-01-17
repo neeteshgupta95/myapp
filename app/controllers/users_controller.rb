@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   before_action :daily_records, only: [:index, :search]
 
   def index
-    @users = User.all
+    @users = User.all.map(&:to_liquid)
   end
 
   def search
-    @users = User.search_by_name(params[:query])
+    @users = User.search_by_name(params[:query]).map(&:to_liquid)
 
     render :index
   end
@@ -25,6 +25,6 @@ class UsersController < ApplicationController
   end
 
   def daily_records
-    @daily_records = DailyRecord.all
+    @daily_records = DailyRecord.all.map(&:attributes)
   end
 end

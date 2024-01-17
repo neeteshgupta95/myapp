@@ -15,5 +15,10 @@ class GenderCountService
     def get_female_count
       $redis.get('female_count').to_i
     end
+
+    def reset_count
+      $redis.set('female_count', 0)
+      $redis.set('male_count', 0)
+    end
   end
 end

@@ -1,4 +1,9 @@
-<h1>All Users</h1>
+<h1>All Users: {{ users.size }}</h1>
+
+<form action="/users/search" method="get">
+  <input type="text" name="query" value="{{ params.query }}">
+  <input type="submit" value="Search">
+</form>
 
 <table>
   <thead>
@@ -7,15 +12,23 @@
       <th>Gender</th>
       <th>Age</th>
       <th>Created At</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     {% for user in users %}
       <tr>
         <td>{{ user.full_name }}</td>
-        <td>{{ user.gender&.capitalize }}</td>
+        <td>{{ user.gender] }}</td>
         <td>{{ user.age }}</td>
-        <td>{{ user.created_at.httpdate }}</td>
+        <td>{{ user.created_at }}</td>
+        <td>
+          <a data-turbo-method="delete"
+             data-turbo-confirm="Are you sure?"
+             href="/users/{{user.id}}">
+            Delete
+          </a>
+        </td>
       </tr>
     {% endfor %}
   </tbody>

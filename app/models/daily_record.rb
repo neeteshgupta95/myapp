@@ -1,4 +1,6 @@
 class DailyRecord < ApplicationRecord
+  include ActiveModel::Dirty
+
   before_save :calculate_average_age, if: -> { male_count_changed? || female_count_changed? }
 
   default_scope { order(created_at: :desc) }

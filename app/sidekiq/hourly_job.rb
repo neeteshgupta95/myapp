@@ -8,8 +8,7 @@ class HourlyJob
 
     if records.present?
       users = []
-      male_count = 0
-      female_count = 0
+      male_count, female_count = [0, 0]
 
       records.each do |item|
         user = User.find_or_initialize_by(uuid: item['login']['uuid'])
@@ -27,9 +26,9 @@ class HourlyJob
         users << user
 
         if item['gender'] == 'female'
-          female_count = female_count + 1
+          female_count = female_count.next
         else
-          male_count = male_count + 1
+          male_count = male_count.next
         end
       end
 

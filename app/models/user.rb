@@ -12,19 +12,27 @@ class User < ApplicationRecord
     name ? "#{name['first']} #{name['last']}" : ''
   end
 
+  def to_liquid
+    {
+      'id' => id,
+      'full_name' => full_name,
+      'age' => age,
+      'gender' => gender.capitalize,
+      'created_at' => created_at.httpdate
+    }
+  end
+
   private
 
   def update_daily_record_count
-    daily_record = DailyRecord.last
+    daily_record = DailyRecord.first
 
     if daily_record
       if gender == 'male'
-        daily_record.male_count -= 1
+        daily_record.decrement!(:male_count)
       elsif gender == 'female'
-        daily_record.female_count -= 1
+        daily_record.decrement!(:female_count)
       end
-
-      daily_record.save
     end
   end
 end

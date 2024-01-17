@@ -1,54 +1,7 @@
-<h1>All Users: <%= @users.count %></h1>
+<% template = parse_liquid_template("app/views/users/daily_records.liquid") %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Male Avg Count</th>
-      <th>Female Avg Count</th>
-      <th>Male Avg Age</th>
-      <th>Female Avg Age</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @daily_records.each do |daily_record| %>
-      <tr>
-        <td><%= daily_record.date %></td>
-        <td><%= daily_record.male_count %></td>
-        <td><%= daily_record.female_count %></td>
-        <td><%= daily_record.male_avg_count %></td>
-        <td><%= daily_record.female_avg_count %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= template.render({ 'daily_records' => @daily_records }).html_safe %>
 
-<%= form_tag search_users_path, method: :get do %>
-  <%= text_field_tag :query, params[:query] %>
-  <%= submit_tag 'Search' %>
-<% end %>
+<% users_template = parse_liquid_template("app/views/users/users.liquid") %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Gender</th>
-      <th>Created At</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.full_name %></td>
-        <td><%= user.age %></td>
-        <td><%= user.gender&.capitalize %></td>
-        <td><%= user.created_at.httpdate %></td>
-        <td>
-          <%= link_to 'Delete', user_path(user), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= users_template.render({ 'users' => @users }).html_safe %>

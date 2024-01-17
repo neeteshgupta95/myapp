@@ -12,6 +12,8 @@ class DailyJob
 
     DailyRecord.create(payload)
 
+    GenderCountService.reset_count
+
     puts "Job runs successfully"
   end
 end
