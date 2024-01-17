@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_17_063038) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_17_063839) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "daily_records", force: :cascade do |t|
+    t.date "date"
+    t.integer "male_count"
+    t.integer "female_count"
+    t.integer "male_avg_count"
+    t.integer "female_avg_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "uuid", limit: 36
