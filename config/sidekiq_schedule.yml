@@ -1,0 +1,5 @@
+hourly_job:
+  cron: '0 * * * *'  # Run every hour at the 0th minute
+  class: 'HourlyJob'
+  queue: 'default'
+  description: 'Run Hourly Job'
