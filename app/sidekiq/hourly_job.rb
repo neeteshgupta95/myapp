@@ -2,7 +2,7 @@ class HourlyJob
   include Sidekiq::Job
 
   def perform(*args)
-    puts "Hourly job is running at #{Time.current}"
+    puts "Hourly job is running at #{Time.now}"
 
     records = ApiService.new.call(20)['results']
 

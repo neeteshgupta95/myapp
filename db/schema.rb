@@ -16,10 +16,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_17_063839) do
 
   create_table "daily_records", force: :cascade do |t|
     t.date "date"
-    t.integer "male_count"
-    t.integer "female_count"
-    t.integer "male_avg_count"
-    t.integer "female_avg_count"
+    t.integer "male_count", default: 0
+    t.integer "female_count", default: 0
+    t.integer "male_avg_count", default: 0
+    t.integer "female_avg_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

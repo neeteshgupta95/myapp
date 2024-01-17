@@ -3,3 +3,10 @@ hourly_job:
   class: 'HourlyJob'
   queue: 'default'
   description: 'Run Hourly Job'
+
+
+daily_job:
+  cron: '59 23 * * *'  # Run every day At 23:59
+  class: 'DailyJob'
+  queue: 'default'
+  description: 'Run Hourly Job'
